@@ -1,0 +1,35 @@
+
+
+.info_visible {
+  top: 50px;
+  opacity: 1;
+}
+
+.info {
+  position: fixed;
+  z-index: 100000000;
+  top: -50px;
+  width: 70vw;
+  opacity: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: 0.5s;
+}
+
+.info.positive {
+  background-color: #0029bc;
+}
+
+.info.negative {
+  background-color: #bf1d00;
+}
+
+.info_visible {
+  top: 50px;
+  opacity: 1;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="styles/monraa.css">
+    <script src="scripts/dynamics.js"></script>
+    <title>Emma Loto Game</title>
+</head>
+
+<body>
+    <!-- Notification handler -->
+    <div class="info row g8 tac jcc">
+        <img src="images/check.svg" alt="" style="width:14px;">
+        <div>Message</div>
+    </div>
+    <!-- End Notification handler -->
+
+    <!-- Loader -->
+    <div class="loader" id="ankh_api_loader">
+        <div class="circle_ankh_loader delay1"></div>
+        <div class="circle_ankh_loader delay2"></div>
+        <div class="circle_ankh_loader delay3"></div>
+    </div>
+
+    <h1>EMMA LOTTO</h1>
+    <p>Tentez de deviner les 05 numeros de 1 a 100 et gagner 10X votre mise</p>
+    <div class="column g8">
+        <div class="b1 br8 p16">
+            <p>Inserez vos numeros</p>
+            <div class="row g8 user_number">
+                <input type="number" onkeyup="set_1_number(this)">
+                <input type="number" onkeyup="set_2_number(this)">
+                <input type="number" onkeyup="set_3_number(this)">
+                <input type="number" onkeyup="set_4_number(this)">
+                <input type="number" onkeyup="set_5_number(this)">
+            </div>
+        </div>
+        <div class="b1 br8 p16">
+            <p>Inserez votre mise</p>
+            <div class="row jcsb">
+                <input type="number" placeholder="Inserez votre mise" class="f1" onkeyup="get_mise(this)">
+                EURO
+            </div>
+
+        </div>
+    </div>
+
+    <button onclick="jongler_proxy()" class="p16">GO</button>
+    <script src="app.js"></script>
+</body>
+
+</html>
+
+<style>
+    .user_number input {
+        border: 1px solid #aaa;
+        border-radius: 8px;
+        padding: 18px;
+        text-align: center;
+        width: 50px;
+    }
+</style>
