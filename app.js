@@ -62,16 +62,62 @@ function jongler() {
 }
 
 async function check_for_the_match() {
-    show_loader();
-    await sleep(2000);
+    show_winning_nums();
+    $("#lotto_static").classList.remove("visible");
+    $("#lotto_motion").classList.add("visible");
+    $("#user_input").style.display = 'none';
+    $("#jongler_btn").style.display = 'none';
+    await sleep(6000);
+    $("#lotto_static").classList.add("visible");
+    $("#lotto_motion").classList.remove("visible");
+    $("#retry_btn").classList.remove("none");
+    $("#lotto_static").classList.add("none");
+
+    show_user_nums();
+
     hide_loader();
     let won = computed_numbers[0] == num_1 && computed_numbers[1] == num_2 && computed_numbers[2] == num_3 && computed_numbers[3] == num_4 && computed_numbers[4] == num_5;
 
     if (won) {
-        show_positive_message(`Vous avez gagner , vous remportez une somme de ${mise * 10} EURO`);
-        return;
+        $("#win").classList.remove("none");
+        $("#total_gain").innerHTML = parseInt(mise) * 10;
+    } else {
+        $("#lose").classList.remove("none");
     }
 
-    show_negative_message(`Vous avez Perdu les numeros gagnants sont ${computed_numbers}`);
-   
+}
+
+function show_user_nums() {
+
+    $("#user_numeros").innerHTML = `
+      <p class="tac">Voici vos numeros </p>
+      <div class="row g8 winning_num fadeFromBottom">
+         <div style="background-image: url(images/1.png);">${num_1}</div>
+        <div style="background-image: url(images/3.png);">${num_2}</div>
+        <div style="background-image: url(images/4.png);">${num_3}</div>
+        <div style="background-image: url(images/5.png);">${num_4}</div>
+        <div style="background-image: url(images/6.png);">${num_5}</div>
+      </div>
+      
+    `;
+
+    $("#user_numeros").classList.remove("none");
+}
+
+// timing show
+async function show_winning_nums() {
+    $("#winning_num_wrapper").classList.remove("none");
+    for (const num of computed_numbers) {
+        await sleep(1000);
+        let image_index = int_generator(8);
+        let div = document.createElement("div");
+        div.className = "scaleIn";
+        div.style = `background-image: url(images/${image_index}.png);`;
+        div.innerHTML = num;
+        $("#winning_num").appendChild(div);
+    }
+}
+
+function reload() {
+    window.location.reload();
 }

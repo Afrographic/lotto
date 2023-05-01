@@ -1,0 +1,115 @@
+/* Simple nice animations */
+.scaleIn {
+  animation: scaleIn 1s ease 1;
+}
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fadeFromUp {
+  animation: fadeFromUp 1.5s ease 1;
+}
+
+@keyframes fadeFromUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeFromLeft {
+  animation: fadeFromLeft 3.5s ease 1;
+}
+
+@keyframes fadeFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fadeFromBottom {
+  animation: fadeFromBottom 1s ease 1;
+}
+
+@keyframes fadeFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slideUp {
+  animation: slideUp 1s ease 1;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+}
+
+.animate_from_0_to_42 {
+  animation: animate_from_0_to_42 1s ease 1;
+}
+
+@keyframes animate_from_0_to_42 {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(42px);
+  }
+}
+
+.animate_from_42_to_0 {
+  animation: animate_from_42_to_0 1s ease 1;
+}
+
+@keyframes animate_from_42_to_0 {
+  0% {
+    transform: translateY(42px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

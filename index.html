@@ -8,8 +8,34 @@
     <link rel="stylesheet" href="styles/notification.css">
     <link rel="stylesheet" href="styles/loader.css">
     <link rel="stylesheet" href="styles/monraa.css">
+    <link rel="stylesheet" href="styles/animation.css">
+    <link rel="icon" href="images/1.png">
     <script src="scripts/dynamics.js"></script>
     <title>Emma Loto Game</title>
+    <style>
+        @font-face {
+            font-family: gsB;
+            src: url(fonts/GoogleSans-Bold.ttf);
+        }
+
+        @font-face {
+            font-family: gsR;
+            src: url(fonts/GoogleSans-Regular.ttf);
+        }
+
+        * {
+            font-family: gsR;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        function $(target) {
+            return document.querySelector(target);
+        }
+        function $$(target) {
+            return document.querySelectorAll(target);
+        }
+    </script>
 </head>
 
 <body>
@@ -26,7 +52,7 @@
         <div class="circle_ankh_loader delay2"></div>
         <div class="circle_ankh_loader delay3"></div>
     </div>
-
+    <!-- 
     <h1>EMMA LOTTO</h1>
     <p>Tentez de deviner les 05 numeros de 1 a 100 et gagner 10X votre mise</p>
     <div class="column g8">
@@ -50,18 +76,153 @@
         </div>
     </div>
 
-    <button onclick="jongler_proxy()" class="p16">GO</button>
+    <button onclick="jongler_proxy()" class="p16">GO</button> -->
+
+    <div class="vh100 column aic p32 jcc oh" style="gap:32px;">
+        <div class="column g16 aic">
+            <img src="images/emma_logo.svg" alt="">
+            <div class="tac" style="width:60vw;">Tentez de deviner <strong>05</strong> numeros
+                de <strong>1 a 100</strong> et gagner <strong>10X</strong> votre mise</div>
+        </div>
+
+        <style>
+            .lotto {
+                opacity: 0;
+                max-height: 0px;
+                transition: 0.5s;
+            }
+
+            .lotto.visible {
+                opacity: 1 !important;
+                max-height: 100vh !important;
+            }
+        </style>
+
+        <img src="images/lotto_static.png" alt="" width="200px" id="lotto_static" class="lotto visible">
+        <img src="images/lotto_motion.gif" alt="" width="200px" id="lotto_motion" class="lotto">
+
+        <div class="column g16" id="user_input" style="max-width:500px;">
+            <p class="tac">Inserez vos numeros</p>
+            <div class="row g8 user_number">
+                <div>
+                    <input type="number" onkeyup="set_1_number(this)" autofocus>
+                </div>
+                <div>
+                    <input type="number" onkeyup="set_2_number(this)">
+                </div>
+                <div>
+                    <input type="number" onkeyup="set_3_number(this)">
+                </div>
+                <div>
+                    <input type="number" onkeyup="set_4_number(this)">
+                </div>
+                <div>
+                    <input type="number" onkeyup="set_5_number(this)">
+                </div>
+
+            </div>
+
+            <div class="p16 br8" style="background-color:#90664C;">
+                <p style="color:white;">Votre mise</p>
+                <div class="row">
+                    <input type="number" style="color:white;" placeholder="Ecrivez ici" class="f1"
+                        onkeyup="get_mise(this)">
+                    <div style="color:white;">EUR</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lose" class="fadeFromBottom none">
+            <h2 class="tac">Vous avez perdu!</h2>
+            <p class="tac">Tentez une autre chance 😐</p>
+        </div>
+
+       
+        <div id="win" class="fadeFromBottom none">
+            <h2 class="tac">Vous avez gagne</h2>
+            <div class="p16 br8 tac" style="background-color:#F3AE28;color:white;">
+               Vous remportez <strong id="total_gain">85000 EUR</strong>
+            </div>
+        </div>
+
+
+        <div id="winning_num_wrapper" class="none b1 br8 p16" style="transition:0.25s;">
+          
+            <div class="none" id="user_numeros">
+            </div>
+
+            <p class="tac">Voici les numeros gagants</p>
+            <div class="row g8 winning_num" id="winning_num">
+            </div>
+        </div>
+
+        <div class="column g8 aic " id="jongler_btn">
+            <img src="images/go.svg" alt="" class="cp" onclick="jongler_proxy()">
+            <div>Jongler</div>
+        </div>
+
+        <div class="column g8 aic none" id="retry_btn">
+            <img src="images/retry.svg" alt="" class="cp" onclick="reload()">
+            <div>Resssayer</div>
+        </div>
+
+    </div>
     <script src="app.js"></script>
 </body>
 
 </html>
 
 <style>
-    .user_number input {
+  
+
+    *.none {
+        display: none;
+    }
+
+    .winning_num div {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: rgba(255, 255, 255, 0.418);
+
+        /* Firefox */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .user_number div {
         border: 1px solid #aaa;
         border-radius: 8px;
         padding: 18px;
+    }
+
+    .user_number input {
+        width: 100%;
         text-align: center;
-        width: 50px;
     }
 </style>
